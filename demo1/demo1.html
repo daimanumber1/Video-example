@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				padding: 0;
+				margin: 0;
+			}
+			
+			.box {
+				width: 400px;
+				height: 284px;
+				background: pink;
+				margin: 80px auto;
+				border: 1px solid #C0DCC0;
+			}
+			
+			nav {
+				display: flex;
+			}
+			
+			a {
+				width: 100px;
+				height: 40px;
+				background: #C0DCC0;
+				border: 1px solid white;
+				text-align: center;
+				line-height: 40px;
+				text-decoration: none;
+				color: black;
+			}
+			
+			li{
+				line-height: 30px;
+			}
+			.section2,.section3,.section4 {
+				display: none;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var aList = document.getElementsByTagName("a");
+				var sections = document.getElementsByTagName("section");
+				
+				for(var i=0; i<aList.length; i++){
+					aList[i].index = i;
+					aList[0].style.background = "#9BAF9B";
+					aList[i].onclick = function(){
+
+						for(var i=0; i<aList.length; i++){
+							sections[i].style.display = "none";
+							aList[i].style.background = "#C0DCC0";
+						}
+						this.style.background = "#9BAF9B";
+						
+						sections[this.index].style.display = "block";
+					}
+				}
+			}
+			
+		</script>
+	</head>
+	
+	<body>
+		<div class="box">
+			<nav>
+				<a href="#" data-count = "first">国内新闻</a>
+				<a href="#">国内新闻</a>
+				<a href="#">国内新闻</a>
+				<a href="#">国内新闻</a>
+			</nav>
+			<section class="section1">
+				<ol>
+					<li>河感在生矿难，死伤在全10</li>
+					<li>禽流感在感在广1处继续蔓延，温家宝指示</li>
+					<li>南方大旱，农作物减产绝收面积上亩</li>
+					<li>猪流感在广在全国暴发</li>
+					<li>禽流感在全国多处继续蔓延，温家宝指示</li>
+					<li>南方大旱，农作物减产绝收面积上亩</li>
+					<li>猪流感在广东群体性暴发</li>
+				</ol>
+			</section>
+			<section class="section2">
+				<ol>
+					<li>河感在生矿难，死伤在全10</li>
+					<li>禽流感在感在广1处继续蔓延，温家宝指示</li>
+					
+					
+				</ol>
+			</section>
+			<section class="section3">
+				<ol>
+					
+					<li>禽流感在全国多处继续蔓延，温家宝指示</li>
+					<li>南方大旱，农作物减产绝收面积上亩</li>
+					<li>猪流感在广东群体性暴发</li>
+				</ol>
+			</section>
+			<section class="section4">
+				<ol>
+					
+					<li>猪流感在广在全国暴发</li>
+					<li>禽流感在全国多处继续蔓延，温家宝指示</li>
+					<li>南方大旱，农作物减产绝收面积上亩</li>
+					<li>猪流感在广东群体性暴发</li>
+				</ol>
+			</section>
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" />
+		<!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+		<style type="text/css">
+			.box {
+				width: 722px;
+				height: 362px;
+				background: black;
+				border-radius: 25px;
+				margin: 80px auto;
+				/*padding: auto;*/
+				position: relative;
+			}
+			
+			.player {
+				width: 640px;
+				height: 100%;
+				background: url(../img/loading.gif) no-repeat center;
+				margin: 0 auto;
+			}
+			
+			.controls {
+				width: 700px;
+				height: 40px;
+				background: rgba(255, 255, 0, 0.3);
+				position: absolute;
+				bottom: 10px;
+				left: 10px;
+				border-radius: 10px;
+			}
+			
+			.switch {
+				position: absolute;
+				height: 20px;
+				width: 20px;
+				top: 10px;
+				left: 10px;
+				text-align: center;
+				line-height: 20px;
+				color: yellow;
+				cursor: pointer;
+			}
+			
+			.progress {
+				position: absolute;
+				width: 432px;
+				height: 10px;
+				background: rgba(255, 255, 255, 0.4);
+				left: 40px;
+				top: 15px;
+				border-radius: 5px;
+				overflow: hidden;
+			}
+			
+			.curr-progress {
+				width: 30%;
+				background: white;
+				height: 10px;
+			}
+			
+			.time {
+				position: absolute;
+				width: 120px;
+				height: 20px;
+				left: 510px;
+				top: 10px;
+				color: white;
+				font-size: 12px;
+				text-align: center;
+				line-height: 20px;
+			}
+			
+			.extend {
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				top: 10px;
+				right: 20px;
+				color: yellow;
+				line-height: 20px;
+				text-align: center;
+				text-decoration: none;
+			}
+			
+			.player video {
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="player">
+				<video src="fun.mp4"></video>
+			</div>
+			<div class="controls">
+				<i class="switch fa fa-play"></i>
+				<div class="progress">
+					<div class="curr-progress">
+
+					</div>
+				</div>
+				<div class="time">
+					<span class="curr-time">00:00:00</span>/<span class="total-time">00:00:00</span>
+
+				</div>
+				<a href="#" class="extend fa fa-expand"></a>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var swi = document.getElementsByClassName("switch")[0];
+		var vid = document.getElementsByTagName("video")[0];
+		var totalTime = document.getElementsByClassName("total-time")[0];
+		var currTime = document.getElementsByClassName("curr-time")[0];
+		var currProgress = document.getElementsByClassName("curr-progress")[0];
+		swi.onclick = function() {
+			if(swi.classList.contains("fa-play")) {
+				vid.play();
+				swi.classList.remove("fa-play");
+				swi.classList.add("fa-pause");
+			} else {
+				vid.pause();
+				swi.classList.remove("fa-pause");
+				swi.classList.add("fa-play");
+			}
+
+		};
+		//当前播放了的时间
+		vid.ontimeupdate = function() {
+			var h = Math.floor(vid.currentTime / 3600);
+			var min = Math.floor(vid.currentTime % 3600 / 60);
+			var s = Math.floor(vid.currentTime % 60);
+			h = h >= 10 ? h : "0" + h;
+			min = min >= 10 ? min : "0" + min;
+			s = s >= 10 ? s : "0" + s;
+			currTime.innerHTML = h + ":" + min + ":" + s;
+			
+			
+			currProgress.style.width = 100*(vid.currentTime/vid.duration) + "%";
+
+		};
+
+		//				总的时间
+		vid.oncanplay = function() {
+			var h = Math.floor(vid.duration / 3600);
+			var min = Math.floor(vid.duration % 3600 / 60);
+			var s = Math.floor(vid.duration % 60);
+			h = h >= 10 ? h : "0" + h;
+			min = min >= 10 ? min : "0" + min;
+			s = s >= 10 ? s : "0" + s;
+			totalTime.innerHTML = h + ":" + min + ":" + s;
+		}
+	</script>
+
+</html>
