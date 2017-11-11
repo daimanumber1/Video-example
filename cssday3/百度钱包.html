@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				background: grey;
+			}
+			.box {
+				width: 300px;
+				height: 300px;
+				margin: 50px auto;
+				position: relative;
+				border: 1px solid red;
+				/*perspective: 500px;*/
+
+			}
+			.box::before, .box::after {
+				position: absolute;
+				content: "";
+				height: 100%;
+				width: 100%;
+				border-radius: 50%;
+				transition: all 2s;
+           		 backface-visibility: hidden;
+				
+			}
+			.box::after {
+
+				background: url(bg.png) right;
+				
+			} 
+			.box:hover::after{
+				transform: rotateY(180deg);
+			}
+			.box:hover::before{
+				transform: rotateY(0deg);
+			}
+			.box::before {
+				transform:rotateY(180deg);
+				background: url(bg.png) left;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			
+		</div>
+	</body>
+</html>
